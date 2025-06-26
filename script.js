@@ -65,9 +65,72 @@ ScrollReveal().reveal('.home-content h1, .about-img',{origin: 'left'});
 
 
 
+// Skill bars animation
+function animateSkillBars() {
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    skillCards.forEach(card => {
+        observer.observe(card);
+    });
+}
 
-
-
-
-
+// Initialize skill bar animation when DOM is loaded
+document.addEventListener('DOMContentLoaded', animateSkillBars);
 //////////////////////////////////////
+
+// Show More Skills Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const hiddenSkills = document.querySelectorAll('.hidden-skill');
+    const btnText = showMoreBtn.querySelector('.btn-text');
+    
+    if (showMoreBtn && hiddenSkills.length > 0) {
+        let isExpanded = false;
+        
+        showMoreBtn.addEventListener('click', function() {
+            isExpanded = !isExpanded;
+            
+            hiddenSkills.forEach((skill, index) => {
+                if (isExpanded) {
+                    setTimeout(() => {
+                        skill.classList.add('show');
+                    }, index * 50); // Stagger the animation
+                } else {
+                    skill.classList.remove('show');
+                }
+            });
+            
+            // Update button text and icon
+            if (isExpanded) {
+                btnText.textContent = 'Show Less Skills';
+                showMoreBtn.classList.add('expanded');
+            } else {
+                btnText.textContent = 'Show More Skills';
+                showMoreBtn.classList.remove('expanded');
+            }
+            
+            // Smooth scroll to show the new skills
+            if (isExpanded) {
+                setTimeout(() => {
+                    const firstHiddenSkill = document.querySelector('.hidden-skill.show');
+                    if (firstHiddenSkill) {
+                        firstHiddenSkill.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest' 
+                        });
+                    }
+                }, 300);
+            }
+        });
+    }
+});
