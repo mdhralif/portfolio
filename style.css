@@ -1015,15 +1015,15 @@ span{
         min-height: auto;
     }
     .contact-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
     .contact-left {
         order: 1;
     }
     .contact-right {
         order: 2;
-        padding: 3rem 2rem;
+        padding: 2rem 1rem;
     }
     .contact-method {
         padding: 2rem;
@@ -1094,8 +1094,6 @@ span{
     }
     .contact-method {
         padding: 1.5rem;
-        flex-direction: column;
-        text-align: center;
         gap: 1rem;
     }
     .contact-icon {
