@@ -130,8 +130,7 @@ span{
 }
 .home-img img{
     float: right;
-    border: solid ;
-    
+
     /* max-width: 450px; */
     /* margin-right: 100px;  */
     opacity: 0;
